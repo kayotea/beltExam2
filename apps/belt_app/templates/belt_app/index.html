@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Wish List: Main Login/Reg Page</title>
+        {%load staticfiles %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <br>
+            <h3>Register:</h3>
+            <form action="/register/process" method="post" class="form">
+            {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" name="name"><br>
+                <label for="username">Username:</label>
+                <input type="text" name="username"><br>
+                <p>*Password should be at least 8 characters*</p>
+                <label for="password">Password:</label>
+                <input type="password" name="password"><br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password"><br>
+                <label for="date">Date Hired:</label>
+                <input type="date" name="date"><br><br>
+                <input type="submit" value="Register">
+            </form>
+            <h3>Login:</h3>
+            <form action="/login" method="post" class="form">
+            {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username"><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password"><br><br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </body>
+</html>
